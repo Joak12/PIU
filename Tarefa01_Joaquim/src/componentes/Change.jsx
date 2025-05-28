@@ -1,39 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 export default function Change() {
   const [darkMode, setDarkMode] = useState(false);
-  let body = document.body
 
-  useEffect(() => {
-    if (darkMode) {
-      body.style.background = "black"
-      document.querySelectorAll('p').forEach(p => {
-        p.style.color = "white";
-      });
-
-      document.querySelectorAll('h1').forEach(h1 => {
-        h1.style.color = "white"
-      })
-
-    } else {
-      body.style.background = "white"
-
-      document.querySelectorAll('p').forEach(p => {
-        p.style.color = "black";
-      });
-
-      document.querySelectorAll('h1').forEach(h1 => {
-        h1.style.color = "black"
-      })
-    }
-  }, [darkMode]);
+  const toggleDarkMode = () => {
+    setDarkMode(prevMode => !prevMode);
+    
+    // Alternando o estilo diretamente
+    document.body.style.background = darkMode ? "white" : "black";
+    
+    const color = darkMode ? "black" : "white";
+    document.querySelectorAll('p').forEach(p => {
+      p.style.color = color;
+    });
+    
+    document.querySelectorAll('h1').forEach(h1 => {
+      h1.style.color = color;
+    });
+  };
 
   return (
-    <div className="min-h-screen transition bg-white dark:bg-gray-900 text-black dark:text-white p-8">
+    <div className="min-h-screen p-8" style={{ background: darkMode ? 'black' : 'white', color: darkMode ? 'white' : 'black' }}>
       <h1 className="text-3xl font-bold mb-4">Modo {darkMode ? 'Escuro' : 'Claro'}</h1>
       <button
-        className="px-4 py-2 bg-gray-800 text-white dark:bg-yellow-300 dark:text-black rounded"
-        onClick={() => setDarkMode(!darkMode)}
+        className="px-4 py-2 bg-gray-800 text-white rounded"
+        onClick={toggleDarkMode}
       >
         Alternar Modo
       </button>
