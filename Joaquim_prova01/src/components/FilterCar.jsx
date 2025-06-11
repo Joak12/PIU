@@ -1,4 +1,4 @@
-import { carros_lista } from "./src/components/dados_carros"
+import { carros_lista } from "./dados_carros";
 export default function FilterCar(){
     const carrosvermelhos = carros_lista.filter(carro => carro.cor === "vermelho")
 

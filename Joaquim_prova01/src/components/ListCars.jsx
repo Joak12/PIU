@@ -1,4 +1,4 @@
-import { carros_lista } from "./src/components/dados_carros"
+import { carros_lista } from "./dados_carros";
 import Car from "./Car"
 export default function ListCars(){
     return(
@@ -11,3 +11,4 @@ export default function ListCars(){
         </div>
     )
 }
+
